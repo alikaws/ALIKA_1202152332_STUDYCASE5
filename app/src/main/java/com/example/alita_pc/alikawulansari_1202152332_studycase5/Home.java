@@ -2,6 +2,7 @@ package com.example.alita_pc.alikawulansari_1202152332_studycase5;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +44,18 @@ public class Home extends AppCompatActivity {
         rc.setLayoutManager(new LinearLayoutManager(this));
         rc.setAdapter(adapter);
 
+        //onClick untuk floatingButton untuk menambahkan task todo
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+                Intent intent = new Intent(Home.this, adding.class);
+                startActivityForResult(intent, 1);
+            }
+        });
+
         //untuk menjalankan method
         initswipe();
     }
@@ -83,17 +96,14 @@ public class Home extends AppCompatActivity {
     //Method yang dijalankan ketika item pada menu dipilih
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id==R.id.menusetting){
+        int id=item.getItemId();
+        if (id == R.id.menusetting) {
             startActivity(new Intent(Home.this, setting.class));
             finish();
         }
         return true;
     }
 
-    //onClick untuk floatingButton untuk menambahkan task todo
-    public void menambahkan(View view) {
-        startActivity(new Intent(Home.this, adding.class));
-
     }
-}
+
+
